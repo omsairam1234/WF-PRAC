@@ -1,0 +1,325 @@
+// 1. Write a JAVA Program to implement built-in support (java.util.Observable) Weather station with members temperature, humidity, 
+// pressure and methods mesurmentsChanged(), setMesurment(), getTemperature(), getHumidity(), getPressure()
+import java.util.ArrayList;
+import java.util.List;
+
+interface WeatherDataListener {
+    void updateWeatherData(double temperature, double humidity, double pressure);
+}
+
+class WeatherData {
+    private List<WeatherDataListener> listeners = new ArrayList<>();
+    private double temperature;
+    private double humidity;
+    private double pressure;
+
+    public void addListener(WeatherDataListener listener) {
+        listeners.add(listener);
+    }
+
+    public void setMeasurement(double temperature, double humidity, double pressure) {
+        this.temperature = temperature;
+        this.humidity = humidity;
+        this.pressure = pressure;
+        notifyListeners();
+    }
+
+    private void notifyListeners() {
+        for (WeatherDataListener listener : listeners) {
+            listener.updateWeatherData(temperature, humidity, pressure);
+        }
+    }
+}
+
+class Display implements WeatherDataListener {
+    @Override
+    public void updateWeatherData(double temperature, double humidity, double pressure) {
+        System.out.println("Temperature: " + temperature + "°C");
+        System.out.println("Humidity: " + humidity + "%");
+        System.out.println("Pressure: " + pressure + " hPa");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        WeatherData weatherData = new WeatherData();
+        Display display = new Display();
+
+        // Add the display as a listener to the weather data
+        weatherData.addListener(display);
+
+        // Simulate measurements changing
+        weatherData.setMeasurement(25.5, 60.2, 1013.2);
+    }
+}
+
+// 2. Write a Java Program to implement I/O Decorator for converting uppercase letters to lower case letters
+import java.io.*;
+
+class UppercaseToLowercaseInputStream extends FilterInputStream {
+    protected UppercaseToLowercaseInputStream(InputStream in) {
+        super(in);
+    }
+
+    @Override
+    public int read() throws IOException {
+        int data = super.read();
+        if (data != -1) {
+            char c = (char) data;
+            if (Character.isUpperCase(c)) {
+                c = Character.toLowerCase(c);
+                data = (int) c;
+            }
+        }
+        return data;
+    }
+
+    @Override
+    public int read(byte[] b, int off, int len) throws IOException {
+        int bytesRead = super.read(b, off, len);
+        for (int i = off; i < off + bytesRead; i++) {
+            char c = (char) b[i];
+            if (Character.isUpperCase(c)) {
+                c = Character.toLowerCase(c);
+                b[i] = (byte) c;
+            }
+        }
+        return bytesRead;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        try {
+            // Create an input stream to read from the standard input
+            InputStream inputStream = new UppercaseToLowercaseInputStream(System.in);
+
+            // Create an output stream to write to the standard output
+            OutputStream outputStream = System.out;
+
+            int data;
+            while ((data = inputStream.read()) != -1) {
+                outputStream.write(data);
+            }
+
+            inputStream.close();
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+// 3. Write a Java Program to implement Factory method for Pizza Store with createPizza(), 
+// orederPizza(), prepare(), Bake(), cut(), box(). Use this to create variety of pizzas like NyStyleCheesePizza, ChicagoStyleCheesePizza etc
+// Abstract Pizza class
+abstract class Pizza {
+    String name;
+
+    public void prepare() {
+        System.out.println("Preparing " + name);
+    }
+
+    public void bake() {
+        System.out.println("Baking " + name);
+    }
+
+    public void cut() {
+        System.out.println("Cutting " + name);
+    }
+
+    public void box() {
+        System.out.println("Boxing " + name);
+    }
+}
+
+// Concrete NY Style Cheese Pizza
+class NYStyleCheesePizza extends Pizza {
+    public NYStyleCheesePizza() {
+        name = "NY Style Cheese Pizza";
+    }
+}
+
+// Concrete Chicago Style Cheese Pizza
+class ChicagoStyleCheesePizza extends Pizza {
+    public ChicagoStyleCheesePizza() {
+        name = "Chicago Style Cheese Pizza";
+    }
+
+    @Override
+    public void cut() {
+        System.out.println("Cutting " + name + " into square slices");
+    }
+}
+
+// Abstract PizzaStore class
+abstract class PizzaStore {
+    public Pizza orderPizza(String type) {
+        Pizza pizza = createPizza(type);
+
+        pizza.prepare();
+        pizza.bake();
+        pizza.cut();
+        pizza.box();
+
+        return pizza;
+    }
+
+    protected abstract Pizza createPizza(String type);
+}
+
+// Concrete NY Style Pizza Store
+class NYPizzaStore extends PizzaStore {
+    @Override
+    protected Pizza createPizza(String type) {
+        if (type.equals("cheese")) {
+            return new NYStyleCheesePizza();
+        } else {
+            // Add more pizza types as needed
+            return null;
+        }
+    }
+}
+
+// Concrete Chicago Style Pizza Store
+class ChicagoPizzaStore extends PizzaStore {
+    @Override
+    protected Pizza createPizza(String type) {
+        if (type.equals("cheese")) {
+            return new ChicagoStyleCheesePizza();
+        } else {
+            // Add more pizza types as needed
+            return null;
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        PizzaStore nyStore = new NYPizzaStore();
+        PizzaStore chicagoStore = new ChicagoPizzaStore();
+
+        Pizza pizza1 = nyStore.orderPizza("cheese");
+        System.out.println("Ethan ordered a " + pizza1.name);
+
+        Pizza pizza2 = chicagoStore.orderPizza("cheese");
+        System.out.println("Joel ordered a " + pizza2.name);
+    }
+}
+
+// 4.  Write a Java Program to implement Singleton pattern for multithreading.
+class Singleton {
+    private Singleton() {
+        // Private constructor to prevent instantiation from other classes.
+    }
+
+    private static class SingletonHelper {
+        // Nested static class to provide a thread-safe instance of the Singleton.
+        private static final Singleton instance = new Singleton();
+    }
+
+    public static Singleton getInstance() {
+        // Return the Singleton instance using the nested class.
+        return SingletonHelper.instance;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Creating multiple threads to access the Singleton instance.
+        Thread thread1 = new Thread(() -> {
+            Singleton singleton = Singleton.getInstance();
+            System.out.println("Thread 1: " + singleton.hashCode());
+        });
+
+        Thread thread2 = new Thread(() -> {
+            Singleton singleton = Singleton.getInstance();
+            System.out.println("Thread 2: " + singleton.hashCode());
+        });
+
+        thread1.start();
+        thread2.start();
+    }
+}
+
+// 5. Write a Java Program to implement command pattern to test Remote Control.
+
+// Command interface
+interface Command {
+    void execute();
+}
+
+// Receiver
+class Light {
+    public void on() {
+        System.out.println("Light is on");
+    }
+
+    public void off() {
+        System.out.println("Light is off");
+    }
+}
+
+// Concrete Command for turning the light on
+class LightOnCommand implements Command {
+    private Light light;
+
+    public LightOnCommand(Light light) {
+        this.light = light;
+    }
+
+    public void execute() {
+        light.on();
+    }
+}
+
+// Concrete Command for turning the light off
+class LightOffCommand implements Command {
+    private Light light;
+
+    public LightOffCommand(Light light) {
+        this.light = light;
+    }
+
+    public void execute() {
+        light.off();
+    }
+}
+
+// Invoker
+class RemoteControl {
+    private Command command;
+
+    public void setCommand(Command command) {
+        this.command = command;
+    }
+
+    public void pressButton() {
+        command.execute();
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a Light
+        Light livingRoomLight = new Light();
+
+        // Create commands for turning the light on and off
+        Command lightOn = new LightOnCommand(livingRoomLight);
+        Command lightOff = new LightOffCommand(livingRoomLight);
+
+        // Create a remote control
+        RemoteControl remote = new RemoteControl();
+
+        // Assign the commands to the remote control buttons
+        remote.setCommand(lightOn);
+
+        // Press the button to turn the light on
+        remote.pressButton();
+
+        remote.setCommand(lightOff);
+
+        // Press the button to turn the light off
+        remote.pressButton();
+    }
+}
