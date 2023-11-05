@@ -2199,7 +2199,7 @@ res.end();
 }).listen(8080);
 
 
-//CORRECT PROGRAM....Plz run this program and going on browser and type localhost:3000 
+//CORRECT PROGRAM....Plz run this program and go to on browser and type localhost:3000 
 const http = require('http');
 
 const server = http.createServer((req, res) => {
