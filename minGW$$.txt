@@ -1,57 +1,73 @@
 // 1. Write a JAVA Program to implement built-in support (java.util.Observable) Weather station with members temperature, humidity, 
 // pressure and methods mesurmentsChanged(), setMesurment(), getTemperature(), getHumidity(), getPressure()
-import java.util.ArrayList;
-import java.util.List;
 
-interface WeatherDataListener {
-    void updateWeatherData(double temperature, double humidity, double pressure);
-}
+import java.util.Observable;
+import java.util.Observer;
 
-class WeatherData {
-    private List<WeatherDataListener> listeners = new ArrayList<>();
-    private double temperature;
-    private double humidity;
-    private double pressure;
+class WeatherData extends Observable {
+    private float temperature;
+    private float humidity;
+    private float pressure;
 
-    public void addListener(WeatherDataListener listener) {
-        listeners.add(listener);
+    public void measurementsChanged() {
+        setChanged();
+        notifyObservers();
     }
 
-    public void setMeasurement(double temperature, double humidity, double pressure) {
+    public void setMeasurements(float temperature, float humidity, float pressure) {
         this.temperature = temperature;
         this.humidity = humidity;
         this.pressure = pressure;
-        notifyListeners();
+        measurementsChanged();
     }
 
-    private void notifyListeners() {
-        for (WeatherDataListener listener : listeners) {
-            listener.updateWeatherData(temperature, humidity, pressure);
+    public float getTemperature() {
+        return temperature;
+    }
+
+    public float getHumidity() {
+        return humidity;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
+}
+
+class WeatherDisplay implements Observer {
+    private WeatherData weatherData;
+
+    public WeatherDisplay(WeatherData weatherData) {
+        this.weatherData = weatherData;
+        weatherData.addObserver(this);
+    }
+
+    public void update(Observable o, Object arg) {
+        if (o instanceof WeatherData) {
+            WeatherData weatherData = (WeatherData) o;
+            float temperature = weatherData.getTemperature();
+            float humidity = weatherData.getHumidity();
+            float pressure = weatherData.getPressure();
+
+            System.out.println("Temperature: " + temperature + "°C");
+            System.out.println("Humidity: " + humidity + "%");
+            System.out.println("Pressure: " + pressure + " hPa");
+            System.out.println();
         }
     }
 }
 
-class Display implements WeatherDataListener {
-    @Override
-    public void updateWeatherData(double temperature, double humidity, double pressure) {
-        System.out.println("Temperature: " + temperature + "°C");
-        System.out.println("Humidity: " + humidity + "%");
-        System.out.println("Pressure: " + pressure + " hPa");
-    }
-}
-
-public class Main {
+public class P1 {
     public static void main(String[] args) {
         WeatherData weatherData = new WeatherData();
-        Display display = new Display();
+        WeatherDisplay display1 = new WeatherDisplay(weatherData);
+        WeatherDisplay display2 = new WeatherDisplay(weatherData);
 
-        // Add the display as a listener to the weather data
-        weatherData.addListener(display);
-
-        // Simulate measurements changing
-        weatherData.setMeasurement(25.5, 60.2, 1013.2);
+        weatherData.setMeasurements(25.0f, 65.0f, 1013.0f);
     }
 }
+
+
 
 // 2. Write a Java Program to implement I/O Decorator for converting uppercase letters to lower case letters
 import java.io.*;
