@@ -392,6 +392,9 @@ We ordered a NY Cheese Pizza
 
 Preparing Chicago Cheese Pizza Baking Chicago Cheese Pizza Cutting Chicago Cheese Pizza Boxing Chicago Cheese Pizza
    We ordered a Chicago Cheese Pizza
+
+
+
 Q.4 Write a java program to implement singleton pattern for multithreading.
 
 package javaprograms;
@@ -771,12 +774,6 @@ center ceiling fan is on high center ceiling fan is on high center ceiling fan i
 
 
 
-
-
-
-
-
-
 Q.7 Write a Java Program to implement Adapter pattern for Enumeration iterator.
 
 import java.util.Enumeration; import java.util.Vector;
@@ -868,21 +865,7 @@ MenuItem[] menuItems; String name;
 public DinerMenu() {
 name="LUNCH";
 menuItems = new MenuItem[MAX_ITEMS];
-
-
-
-
 2.99);
-
-
-
-
-
-
-
-
-
-
 
 
 }
@@ -1123,6 +1106,9 @@ LUNCH
 
 Vegetarian BLT, 2.99 -- (Fakin') Bacon with lettuce & tomato on whole wheat BLT, 2.99 -- Bacon with lettuce & tomato on whole wheat
 Soup of the day, 3.29 -- Soup of the day, with a side of potato salad Hotdog, 3.05 -- A hot dog, with saurkraut, relish, onions, topped with cheese Steamed Veggies and Brown Rice, 3.99 -- Steamed vegetables over brown rice Pasta, 3.89 -- Spaghetti with Marinara Sauce, and a slice of sourdough bread
+
+
+
 
 
 Q.9 Write a Java Program to implement State Pattern for Gumball Machine. Create instance variable that holds current state from there, we just need to handle all actions, behaviors and state transition that can happen
@@ -1514,14 +1500,17 @@ Q.12 Design simple HR Application using Spring Framework.
 Q.1 Write a Python program to prepare Scatter Plot for Iris Dataset
 
 import pandas as pd
-import matplotlib.pyplot as plt iris=pd.read_csv("Iris.csv")
-iris.plot(kind="scatter",x='SepalLengthCm',y='PetalLengthCm') plt.grid()
+import matplotlib.pyplot as plt 
+iris=pd.read_csv("Iris.csv")
+iris.plot(kind="scatter",x='SepalLengthCm',y='PetalLengthCm') 
+plt.grid()
 plt.show()
 
 
 Q.2 Write a python program to find all null values in a given dataset & remove them.
 
-# importing pandas as pd import pandas as pd
+# importing pandas as pd 
+import pandas as pd
 # importing numpy as np import numpy as np
 # dictionary of lists
 
@@ -1531,7 +1520,7 @@ df = pd.DataFrame(dict)
 # using isnull() function print("\n isnull() function "); 
 print(df.isnull())
 # filling missing value using fillna()
- print("\n After filling null values with 0"); print(df.fillna(0))
+print("\n After filling null values with 0"); print(df.fillna(0))
 
 Output-
 isnull() function
@@ -1554,10 +1543,11 @@ First Score Second Score Third Score
 
 Q.3 Write a python program to make Categ orical values in numeric format for a given dataset.
 
-#import pandas import pandas as pd
+#import pandas
+import pandas as pd
 # read csv file
 df = pd.read_csv('Customers.csv')
- print(df)
+print(df)
 print("\n After repalcing Category Male as 0 and Female as 1"); 
 # replacing values
 df['GENDER'].replace(['Male', 'Female'],[0, 1], inplace=True)
@@ -1583,13 +1573,14 @@ Name Episodes Gender female male
 5 Sheldon     40    male	0	1
 
 
+
+
 Q.4 Write python program to implement simple linear regression for predicting house price.
 
 import pandas as pd import numpy as np
 import matplotlib.pyplot as plt import seaborn as sns
 
 #sns.set_style("whitegrid") #plt.style.use("fivethirtyeight")
-
 
 USAhousing = pd.read_csv('USA_Housing.csv') USAhousing.head()
 
@@ -1603,8 +1594,9 @@ from sklearn.linear_model import LinearRegression
 
 lin_reg = LinearRegression(normalize=True) lin_reg.fit(X_train,y_train)
 
-
 pred = lin_reg.predict(X_test) plt.scatter(y_test, pred) plt.show()
+
+
 
 
 Q.5 Write a python program to implement Multiple Linear Regression for given dataset.
@@ -1699,6 +1691,8 @@ predicted = model.predict(dataset.data)
 #Getting Accuracy and Statistics print(metrics.classification_report(expected, predicted)) print(metrics.confusion_matrix(expected, predicted))
 
 
+
+
 Q.8. Write a python program to implement Decision Tree whether or not to play Tennis. 
 
 # Write a python program to Implement Decision Tree whether or not to play tennis.
@@ -1779,6 +1773,8 @@ plt.ylabel('Sepal width') plt.xlim(xx.min(), xx.max()) plt.title('SVC with linea
 
 
 
+
+
 Q.10 Write a python program to  find Decision boundary by using a neural network with 10.
 
 import numpy as np
@@ -1818,6 +1814,8 @@ plt.xlabel("Feature 1")
 plt.ylabel("Feature 2")
 plt.title("Decision Boundary")
 plt.show()
+
+
 
 
 
@@ -1908,11 +1906,6 @@ plt.show()
 
 
  
-
-
-  
- 
-
 Q.13 Write a python program to implement k-means algorithm on a synthetic dataset.
 
 pip install numpy scikit-learn
@@ -1952,16 +1945,6 @@ plt.show()
 
 
 
-
-
-
-
-
-
-
-
-
-
 Q.14 Write a python program to implement agglomerative clustering on a synthetic dataset. 
 
 import numpy as np
@@ -1986,7 +1969,8 @@ plt.scatter(data[:, 0], data[:, 1], c=cluster_labels, cmap='viridis')
 plt.title("Agglomerative Clustering")
 plt.show()
 
- 
+
+
                                                        WEB FRAMEWORK
 
 Q.1 Create an HTML form that contain the Student Registration details and write a JavaScript to validate Student first and last name as it should not contain other than alphabets and age should be between 18 to 50.
@@ -2138,7 +2122,12 @@ alert("Invalid fields");
 </body>
 </html>                      
 
-Output:                       
+Output: 
+
+
+
+
+
 Q.3Create an HTML form for Login and write a JavaScript to validate email ID using Regular Expression.
 
 <!DOCTYPE html>
@@ -2222,6 +2211,8 @@ const server = http.createServer((req, res) => {
  Output-
 HELLO WORLD
 
+
+
 Q.5 Using nodejs create a web page to read two file names from user and append contents of first file into second file.
 const fs = require('fs');
   // open destination file for appending
@@ -2231,6 +2222,8 @@ var read = fs.createReadStream("input.txt"); write.on('close', function() {
 console.log("done writing");
 });
 read.pipe(write);
+
+
 
 
 Q.6Create a Nodejs file that opens the requested file and returns the content to the client . If anything goes wrong throw 404 error.
@@ -2261,6 +2254,9 @@ winter.html
 <body>
 <h1>Winter</h1>
 <p>I love the snow!</p>  </body> </html>
+
+
+
 Q.7 Create Nodejs file that write an HTML form with an upload fields.
 
 var http = require('http');
@@ -2281,10 +2277,8 @@ res.write('</form>'); return res.end();
 
 
 
+
 Q.8 Create a Node.js file that demonstrates create database and table in MySQL.
-
-
-
 var mysql = require('mysql');
   var con = mysql.createConnection({ host:"localhost",user: "root", password: ""});
 
@@ -2295,7 +2289,9 @@ console.log("Database created");
 });
 
 
+
 Q.9 Create a node.js file that Select all records from the "customers" table, and display  the result object on console.
+
 var mysql = require('mysql');
 var con = mysql.createConnection({ host: "localhost",user: "root",password: "", 
 database: "mydb" });
@@ -2303,6 +2299,9 @@ con.connect(function(err) {
 if (err) throw err;
 con.query("SELECT * FROM customers", function (err, result, fields)
 {   if (err) throw err;  console.log(result); });  });
+
+
+
 Q.10 Create a node.js file that Insert Multiple Records in "student" table, and display the result object on console.
 
 var mysql = require('mysql');
@@ -2317,6 +2316,7 @@ con.query(sql, [values], function (err, result) { if (err) throw err;
 console.log("Number of records inserted: " + result.affectedRows);
 });
 });
+
 
 
 Q.11 Create a node.js file that Select all records from the "customers" table, and delete the specified record.
@@ -2378,6 +2378,9 @@ res.write("The date and time are currently: " + dt.myDateTime()); res.end();
 
 Output: 
 The date and time are currently: Sat Feb 12 2022 12:49:07 GMT+0530 (India Standard Time)
+
+
+
 Q.18 Create a js file named main.js for event-driven application. There should be a main loop that listens for events, and then triggers a callback function when one of those events is detected.
 // Import events module
    var events = require('events');
@@ -2398,6 +2401,7 @@ console.log('connection succesful.');
 Output-
 connection succesful.
 data received succesfully. Program Ended.
+
 
 Q.19 Write node js application that transfer a file as an attachment on web and enables browser to prompt the user to download file using express js.
 var express = require('express'); var app = express();
