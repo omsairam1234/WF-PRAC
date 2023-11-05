@@ -294,7 +294,7 @@ l.lower(s);
 }
 
 
-Output ñ
+Output ‚Äì
 enter character:
 HELLO
 entered character:HELLO Lowercase:hello
@@ -304,7 +304,7 @@ entered character:HELLO Lowercase:hello
 
 Q.3Write a Java Program to implement Factory method for Pizza Store with createPizza(), orederPizza(), prepare(), Bake(), cut(), box(). Use this to create variety of pizzas like NyStyleCheesePizza, ChicagoStyleCheesePizza etc.
 
-Create Class ñ 1)Pizza.class
+Create Class ‚Äì 1)Pizza.class
 package javaprograms;
 import java.util.ArrayList;
 
@@ -542,7 +542,53 @@ light.off();
  Stereo.java
 package javaprograms;
 
-public class Stereo{public void on(){System.out.println("Stereois on");}public void off(){System.out.println("Stereois off");}public void setCD(){System.out.println("Stereois set " +"for CDinput");}public void setDVD(){System.out.println("Stereois set"+" for DVDinput");}public void setRadio(){System.out.println("Stereois set" +" for Radio");
+public class Stereo
+
+{
+
+public void on()
+
+{
+
+System.out.println("Stereo
+is on");
+}
+
+public void off()
+
+{
+
+System.out.println("Stereo
+is off");
+}
+
+public void setCD()
+
+{
+
+System.out.println("Stereo
+is set " +
+"for CD
+input");
+}
+
+public void setDVD()
+
+{
+
+System.out.println("Stereo
+is set"+
+" for DVD
+input");
+}
+
+public void setRadio()
+
+{
+
+System.out.println("Stereo
+is set" +
+" for Radio");
 }
 public void setVolume(int volume)
 {
@@ -1637,7 +1683,7 @@ Output
 
 
 
-Q.7 Write a python program to Implement NaÔve Bayes.
+Q.7 Write a python program to Implement Na√Øve Bayes.
 
 from sklearn import datasets from sklearn import metrics
 from sklearn.naive_bayes import GaussianNB
@@ -1682,7 +1728,7 @@ X = PlayTennis.drop(['play'],axis=1)
 # Fitting the model
 from sklearn import tree
 clf = tree.DecisionTreeClassifier(criterion = 'entropy')
- #A decision tree classifier. ìentropyî for the information gain.
+ #A decision tree classifier. ‚Äúentropy‚Äù for the information gain.
 clf = clf.fit(X, y)	
 #Decision tree algorithm splits nodes as long as this value decreases till it reaches zero
   # We can visualize the tree using tree.plot_tree   tree.plot_tree(clf)
@@ -2152,16 +2198,29 @@ Output:
 
 
 
-Q.4 Create nodejs file that will convert the output ëHello World!í into uppercase letters.
+Q.4 Create nodejs file that will convert the output ‚ÄòHello World!‚Äô into uppercase letters.
 
-var http= require('http'); var uc=require('upper-case');
-http.createServer(function(req,res){ res.writeHead(200,{'Content-type':'text/html'}); res.write(uc.upperCase("Hello World")); res.end();
+//WRONG PROGRAM 
+var http= require('http');
+var uc=require('upper-case');
+http.createServer(function(req,res){
+res.writeHead(200,{'Content-type':'text/html'}); 
+res.write(uc.upperCase("Hello World")); 
+res.end();
 }).listen(8080);
 
-Output-
-HELLO WORLD
 
- 
+//CORRECT PROGRAM....Plz run this program and going on browser and type localhost:3000 
+const http = require('http');
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+  res.write('Hello World!'.toUpperCase());
+  res.end();
+}).listen(3000);
+
+ Output-
+HELLO WORLD
 
 Q.5 Using nodejs create a web page to read two file names from user and append contents of first file into second file.
 const fs = require('fs');
@@ -2303,7 +2362,7 @@ Q.15 Using nodejs create a  Recipe Book.
 
 Q.16 write node js script to interact with the filesystem, and serve a web page from a file.
 
-Q.17 Write node js script to build Your Own Node.js Module. Use require (ëhttpí) module is a built-in Node module that invokes the functionality of the HTTP library to create a local server. Also use the export statement to make functions in your module available externally. Create a new text file to contain the functions in your module called,ìmodules.jsî and add this function to return todayís date and time.
+Q.17 Write node js script to build Your Own Node.js Module. Use require (‚Äòhttp‚Äô) module is a built-in Node module that invokes the functionality of the HTTP library to create a local server. Also use the export statement to make functions in your module available externally. Create a new text file to contain the functions in your module called,‚Äúmodules.js‚Äù and add this function to return today‚Äôs date and time.
 	
 Firstmodule.js
 exports.myDateTime = function () { return Date();
@@ -2358,7 +2417,7 @@ Output-
 
 
 
-Q.20 Create your Django app in which after running the server, you should see on the browser, the text ìHello! I am learning Djangoî, which you defined in the index view. 
+Q.20 Create your Django app in which after running the server, you should see on the browser, the text ‚ÄúHello! I am learning Django‚Äù, which you defined in the index view. 
 home app
 views.py
 from django.shortcuts import render 
@@ -2492,7 +2551,7 @@ from language.models import AdminLang @admin.register(AdminLang)
 class AdminLangAdmin(admin.ModelAdmin):
 pass
 
-Output ñ
+Output ‚Äì
 
 
 
