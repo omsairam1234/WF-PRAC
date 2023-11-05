@@ -2276,6 +2276,37 @@ res.write('</form>'); return res.end();
 }).listen(8080);
 
 
+//OR
+
+const fs = require('fs');
+
+const htmlContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>File Upload Form</title>
+</head>
+<body>
+    <h1>File Upload Form</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" />
+        <input type="submit" value="Upload" />
+    </form>
+</body>
+</html>
+`;
+
+fs.writeFile('uploadForm.html', htmlContent, (err) => {
+    if (err) {
+        console.error('Error writing HTML file:', err);
+    } else {
+        console.log('HTML form file created: uploadForm.html');
+    }
+});
+
+
+
+
 
 
 Q.8 Create a Node.js file that demonstrates create database and table in MySQL.
